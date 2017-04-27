@@ -17,7 +17,7 @@ y_coords = "lat"
 
 
 # Convert each .csv file to a feature class
-for csv_file in arcpy.ListFiles("*.csv"):
+for csv_file in arcpy.ListFiles("*p000*.csv"):
     # Use splitext to set the output table name
     out_file = os.path.splitext(csv_file)[0] 
     out_file = "p" + out_file.replace("-", "_")
