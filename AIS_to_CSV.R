@@ -2,7 +2,7 @@
 
 #The purpose of this script is to convert raw "|" AIS data from SpaceQuest to CSV format for integration in a GIS
 #raw files are purged of records with no spatial location and duplicate records
-
+#gfiske Feb 2017
 
 #set input output
 rm(list = ls())
