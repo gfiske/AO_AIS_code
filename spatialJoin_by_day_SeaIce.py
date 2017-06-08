@@ -1,11 +1,8 @@
 #spatialJoin_by_day_SeaIce.py
 
-#gfiske June 2017
-#runs on the ancillary data
-#spatialJoin_by_day_SeaIce.py
-#AIS processing script by gfiske June 2017
 #The purpose of this script is to select each set of points by Julian Day and Spatially Join them with the NSIDC sea ice data
 #NSIDC data source: ftp://sidads.colorado.edu/DATASETS/NOAA/G02186/shapefiles/4km/
+#gfiske June, 2017
 
 import arcpy,os
 #from arcpy.sa import *

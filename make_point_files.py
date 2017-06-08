@@ -1,14 +1,14 @@
 #make_point_files.py
 
-#An ArcGIS script that'll convert all csv files to feature layers in a FGDB
+#The purpose of this script is to convert all raw AIS csv files to feature class point files in an Esri FGDB
 #gfiske Feb 2017
-#updated on Apr 24, 2017 to run on the ancillary data
 
 import arcpy,os
 #from arcpy.sa import *
+arcpy.env.overwriteOutput = True
 
 # Set the current workspace
-arcpy.env.workspace = "C:/Data/Crap/AIS_backup_March2017/ancillary_data"
+arcpy.env.workspace = "C:/Data/rawDir/ancillary_data"
 outdir = "C:/Data/Arctic/ArcticOptions/AIS_w_ancillary_data_Apr_2017.gdb/pointData"
 
 # Set the local variables
@@ -17,7 +17,7 @@ y_coords = "lat"
 
 
 # Convert each .csv file to a feature class
-for csv_file in arcpy.ListFiles("*p000*.csv"):
+for csv_file in arcpy.ListFiles("2016*p000*.csv"):
     # Use splitext to set the output table name
     out_file = os.path.splitext(csv_file)[0] 
     out_file = "p" + out_file.replace("-", "_")

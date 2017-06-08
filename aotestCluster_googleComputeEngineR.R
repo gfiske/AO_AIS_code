@@ -1,5 +1,7 @@
 #testCluster_googleComputeEngineR.R
-#fire up a cluster and send R function to many nodes
+#a test script 
+#experiments with an R cluster on the GCP infrastructure to mass process tabular AIS data
+#ultimately replaced with Google BigQuery
 #gfiske Apr 2017
 
 rm(list = ls())
@@ -35,7 +37,7 @@ vm3 <- gce_ssh_setup(vm3, username="gfiske", key.pub = key.pub, key.private = ke
 ## make the cluster
 plan(cluster, workers = as.cluster(vm1, vm2, vm3))
 
-## make a big function to run asynchronously
+## a big function that'll run asynchronously
 f <- function(trials) {
   count = 0
   for(i in 1:trials) {
@@ -49,5 +51,5 @@ f <- function(trials) {
 # send to cluster
 timeIncre <- microbenchmark(result %<-% f(10000000), times = 2L)
 
-# shutdown instances when finished, they cost big bucks!
+# shutdown instances when finished
 lapply(vm_names, gce_vm_stop)
