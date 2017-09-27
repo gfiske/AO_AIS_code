@@ -1,21 +1,23 @@
 #deleteIdentical.py
 
 #The purpose of this script is to delete the identical AIS points per cell
-#It uses the spaceTime resultion of 4km and one day
+#It uses the spaceTime resolution of 4km and one day
 #run initially on the ancillary data
 #May 2017
 
 import arcpy,os
 #from arcpy.sa import *
 arcpy.env.overwriteOutput = True
+arcpy.CheckOutExtension("Spatial")
 
 # Set the current workspace
 arcpy.env.workspace = "C:/Data/Arctic/ArcticOptions/AIS_w_ancillary_data_Apr_2017_rawPoints.gdb/pointData"
-outdir = "C:/Data/Arctic/ArcticOptions/AIS_w_ancillary_data_Apr_2017.gdb/spatialJoined/"
+#outdir = "C:/Data/Arctic/ArcticOptions/AIS_w_ancillary_data_Apr_2017.gdb/crap/"
+outdir = "C:/Data/Crap/test.gdb/"
 
 #  List raw files and run functions against this set
 for i in arcpy.ListFeatureClasses("*"):
-    # Use splitext to set the output table name
+    # set the output table name
     out_file = outdir + i 
     # Make the XY event layer...    
     try:
@@ -24,7 +26,7 @@ for i in arcpy.ListFeatureClasses("*"):
         dropFields = ["Join_Count", "TARGET_FID"]
         arcpy.DeleteField_management(out_file, dropFields)
         # Set the field upon which the identicals are found
-        fields = ["code_id", "mmsi"]  
+        fields = ["code_id", "mmsi", "yd"]  
         # Execute Delete Identical 
         arcpy.DeleteIdentical_management(out_file, fields)        
     except:
